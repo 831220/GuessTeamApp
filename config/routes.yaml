@@ -1,0 +1,43 @@
+team_index:
+ path: /teams
+ # the controller value has the format 'controller_class::method_name'
+ controller: App\Controller\TeamController::index
+
+create_team:
+  path: /teams/create
+  # the controller value has the format 'controller_class::method_name'
+  controller: App\Controller\TeamController::createTeam
+
+update_team:
+ path: /teams/update/{id}
+ # the controller value has the format 'controller_class::method_name'
+ controller: App\Controller\TeamController::updateTeam
+
+delete_team:
+ path: /teams/delete/{id}
+ # the controller value has the format 'controller_class::method_name'
+ controller: App\Controller\TeamController::deleteTeam
+
+player_index:
+ path: /players
+ # the controller value has the format 'controller_class::method_name'
+ controller: App\Controller\PlayerController::index
+
+create_player:
+  path: /players/create
+  # the controller value has the format 'controller_class::method_name'
+  controller: App\Controller\PlayerController::createPlayer
+update_player:
+ path: /players/update/{id}
+ # the controller value has the format 'controller_class::method_name'
+ controller: App\Controller\PlayerController::updatePlayer
+
+delete_player:
+ path: /players/delete/{id}
+ # the controller value has the format 'controller_class::method_name'
+ controller: App\Controller\PlayerController::deletePlayer
+
+game_page:
+ path: /game
+ # the controller value has the format 'controller_class::method_name'
+ controller: App\Controller\PlayerController::randomPlayers

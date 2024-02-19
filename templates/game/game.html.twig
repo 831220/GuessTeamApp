@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <title>{% block title %}Game{% endblock %}</title>
+    <h1>Game on!</h1>
+    <hr>
+    <section id="game-section">
+        <div id="game-section-div" class="form-group">
+            <div class="d-flex flex-column">
+                <div class="card col-8  p-2">
+
+                    <div class="card-header flex-column">
+                        <label>Punctuation: </label><strong style="font-size: larger" id="punctuation_result">0</strong>
+                        <br>
+                        <label>Rest players: </label><strong id="rest_players_result">10</strong>
+                    </div>
+
+
+                    <div class="container-fluid mt-2 p-2" style="border: solid 1px lightgray">
+                        <div class="row">
+                            <div class="col-4 ml-2">
+                                <span>Current player:</span>
+                            </div>
+                            <div class="col-8 ml-2">
+                                <input id="player_name" type="text" class="form-control" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <span>Select the team:</span>
+                            </div>
+                            <div class="col-8">
+                                <select class="form-control" id="team_selector"></select>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="d-flex flex-start" style="justify-content: space-between">
+                            <button id="button_validate" class="btn btn-outline-secondary">Validate</button>
+                            <button id="button_restart" class="btn btn-outline-danger">Restart</button>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </section>
+
+{% endblock %}
+{% block javascripts %}
+       <script src="../../public/assets/js/game/game.js"></script>
+    <script>
+        alert('NEW GAME! GOOD LUCK...');
+        //selectors I´m gonna work with
+       let playersArray      = {{ playerList|raw }}; if(playersArray === undefined){ const playersArray = {}}
+
+       const playerNameElement = document.querySelector('#player_name');
+       const teamSelectElement = document.querySelector('#team_selector');
+       const buttonValidate    = document.querySelector('#button_validate');
+       const buttonRestart    = document.querySelector('#button_restart');
+       const restPlayersElement    = document.querySelector('#rest_players_result');
+       const punctuationResult    = document.querySelector('#punctuation_result');
+        fillTeamSelector(playersArray, teamSelectElement);
+       const nextPass = (playersArray, teamSelectElement, playerNameElement, restPlayersElement )=>{
+           if(playersArray.toString().length > 2){
+               const firstPlayerKey = Object.keys(playersArray)[0];
+               const firstPlayer = playersArray[firstPlayerKey];
+
+               fillPlayerInput(firstPlayerKey, firstPlayer, playerNameElement, restPlayersElement);
+               delete playersArray[firstPlayerKey];
+           }
+       }
+       nextPass(playersArray, teamSelectElement, playerNameElement, restPlayersElement);
+
+
+
+       //enventhandlers and functions call
+        buttonValidate.addEventListener('click', message=>{
+            processChoice(playerNameElement, teamSelectElement,  punctuationResult);
+            if (Object.keys(playersArray).length === 0 ){
+                alert('Game is over. Your punctuation: '+ punctuationResult.innerText);
+                location.reload();
+            }else{
+                nextPass(playersArray, teamSelectElement, playerNameElement, restPlayersElement);
+            }
+        });
+
+        buttonRestart.addEventListener('click', ()=>{
+           location.reload();
+        });
+
+
+
+
+    </script>
+{% endblock %}

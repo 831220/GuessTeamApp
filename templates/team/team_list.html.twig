@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <title>{% block title %}Teams{% endblock %}</title>
+    <h1>Teams Page</h1>
+    <hr>
+    <div class="d-flex flex-row-reverse w-100" title="Add a team!">
+        <a href="{{ path('create_team') }}" type="button" class="btn btn-outline-success">
+            Add
+        </a>
+    </div>
+    {% if(teamsList is not empty ) %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for team in teamsList %}
+            <tr>
+                <td>{{ team.id }}</td>
+                <td>{{ team.name }}</td>
+                <td><a class="btn btn-outline-danger" href="{{ path('update_team', {'id': team.id}) }}">Editar</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <strong>There are not teams yet. Create two!</strong>
+    {% endif %}
+
+{% endblock %}

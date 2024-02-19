@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <title>{% block title %}Team edition{% endblock %}</title>
+
+    <div class="container-fluid">
+        <div class="card col-md-4">
+            <div class="card-header">Edit Team</div>
+            {% set teamId = form_teams.vars.data.id %}
+
+
+            {{ form_start(form_teams) }}
+            <div class="card-body">
+                <div class="mb-4">
+                    {{ form_row(form_teams.name) }}
+                </div>
+
+                <div class="col-4 mb-4">
+                    {{ form_row(form_teams.color) }}
+                </div>
+            </div>
+            {{ form_end(form_teams) }}
+
+            <div class="card-footer">
+
+            <div class="col-4 mb-4">
+            <a class="btn btn-outline-danger" href="{{ path('delete_team', {'id':teamId}) }}">Delete</a>
+            </div>
+            </div>
+    </div>
+    </div>
+{% endblock %}

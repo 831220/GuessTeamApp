@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <title>{% block title %}Players{% endblock %}</title>
+
+    <h1>Players Page</h1>
+    <hr>
+    <div class="d-flex flex-row-reverse w-100" title="Create a player!">
+        <a href="{{ path('create_player') }}" type="button" class="btn btn-outline-success">
+            Add
+        </a>
+    </div>
+    {% if(playerList is not empty ) %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Team</th>
+                <th>Position</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for player in playerList %}
+                <tr>
+                    <td>{{ player.id }}</td>
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.team.name }}</td>
+                    <td>{{ player.position }}</td>
+                    <td><a class="btn btn-outline-danger" href="{{ path('update_player', {'id': player.id}) }}">Editar</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <strong>There are not players yet. Start creating!</strong>
+    {% endif %}
+{% endblock %}

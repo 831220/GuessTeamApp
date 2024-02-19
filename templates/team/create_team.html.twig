@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <title>{% block title %}Team creation{% endblock %}</title>
+
+    <div class="container-fluid">
+        <div class="card col-md-4">
+            <div class="card-header">Create Team</div>
+
+            {{ form_start(form_teams) }}
+            <div class="card-body">
+                <div class="mb-4">
+                    {{ form_row(form_teams.name) }}
+                </div>
+
+                <div class="col-4 mb-4">
+                    {{ form_row(form_teams.color) }}
+                </div>
+
+                {{ form_widget(form_teams.save) }}
+            </div>
+            {{ form_end(form_teams) }}
+        </div>
+
+    </div>
+{% endblock %}
