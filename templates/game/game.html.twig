@@ -79,7 +79,7 @@
 
 
        //enventhandlers and functions call
-        buttonValidate.addEventListener('click', message=>{
+        buttonValidate.addEventListener('click', ()=>{
             processChoice(playerNameElement, teamSelectElement,  punctuationResult);
             if (Object.keys(playersArray).length === 0 ){
                 alert('Game is over. Your punctuation: '+ punctuationResult.innerText);
