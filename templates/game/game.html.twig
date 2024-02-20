@@ -10,7 +10,7 @@
                 <div class="card col-8  p-2">
 
                     <div class="card-header flex-column">
-                        <label>Punctuation: </label><strong style="font-size: larger" id="punctuation_result">0</strong>
+                        <label>Punctuation: </label><strong id="punctuation_result">0</strong>
                         <br>
                         <label>Rest players: </label><strong id="rest_players_result">10</strong>
                     </div>
@@ -83,7 +83,10 @@
             processChoice(playerNameElement, teamSelectElement,  punctuationResult);
             if (Object.keys(playersArray).length === 0 ){
                 alert('Game is over. Your punctuation: '+ punctuationResult.innerText);
-                location.reload();
+                playerNameElement.innerText = '...'
+                buttonValidate.setAttribute('disabled', true);
+                buttonValidate.innerHTML = 'End of the game';
+
             }else{
                 nextPass(playersArray, teamSelectElement, playerNameElement, restPlayersElement);
             }
@@ -97,4 +100,11 @@
 
 
     </script>
+    <style>
+        #punctuation_result{
+            font-size: xx-large;
+            background-color: black;
+            color: white;
+        }
+    </style>
 {% endblock %}

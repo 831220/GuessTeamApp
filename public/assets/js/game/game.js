@@ -8,13 +8,14 @@ const processChoice = (playerElement, selectElement, pointsElement)=>{
         score ++;
         pointsElement.innerText = score;
     }else{
-        alert('incorrecto');
+        score --;
+        pointsElement.innerText = score;
     }
 
 }
 
 
-const fillTeamSelector = (playersArray, teamSelectElement) => {debugger
+const fillTeamSelector = (playersArray, teamSelectElement) => {
 
     let uniqueTeams = new Set();
 
